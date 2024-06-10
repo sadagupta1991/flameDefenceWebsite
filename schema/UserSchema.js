@@ -1,9 +1,8 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const encrypt = require('mongoose-encryption');
+const md5 = require('md5');
 
 
-console.log(process.env.API_KEY);
 
 const UserSchema = new mongoose.Schema({
     email:String,
@@ -11,7 +10,5 @@ const UserSchema = new mongoose.Schema({
 });
 
 
-UserSchema.plugin
-(encrypt,{secret:process.env.SECRET,encryptedFields:["password"]});
 
 module.exports= mongoose.model('User',UserSchema);

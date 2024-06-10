@@ -1,4 +1,5 @@
 const User = require('../schema/UserSchema');
+const md5 = require('md5');
 
 module.exports = {
     createNewUser:async(reqBody)=>{
@@ -6,7 +7,7 @@ module.exports = {
             console.log('Dao',reqBody);
             const newUser = new User({
                 email:reqBody.email,
-                password:reqBody.password
+                password:md5(reqBody.password)
             });
             return await newUser.save();
         }catch(error){
